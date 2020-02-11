@@ -1,5 +1,6 @@
 package com.cldbiz.angularSpring.controller.ui;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cldbiz.angularSpring.common.AfwConstants;
@@ -24,8 +26,8 @@ import com.cldbiz.angularSpring.service.cache.AppCodeCacheService;
 
 @RestController
 @RequestMapping("/rest/ui/login")
-public class LoginUIController extends BaseController {
-	private static final Logger logger = LoggerFactory.getLogger(LoginUIController.class);
+public class LoginUiController extends BaseController {
+	private static final Logger logger = LoggerFactory.getLogger(LoginUiController.class);
 	
 	@Autowired
 	AppCodeCacheService appCodeCacheService;
@@ -33,7 +35,7 @@ public class LoginUIController extends BaseController {
 	@Autowired
 	UserProfileService userProfileService;
 
-	@RequestMapping(value="/pageConfig")
+	@RequestMapping(value="/pageConfig", method=RequestMethod.POST)
 	public JsonResponse pageConfig(HttpServletRequest request, @RequestBody UserProfileDto userProfileDto) throws JsonFailure {
 		String greeting = "Hello " + userProfileDto.getFirstName();
 		logger.debug("This is a debugger message from LoginUIController");
@@ -51,11 +53,16 @@ public class LoginUIController extends BaseController {
 					.data("testMode", appCodeCacheService.findById(3L))
 					.data("execMode", appCodeCacheService.findByType(AfwConstants.EXECUTION_MODE))
 					.data("devTypeCode", appCodeCacheService.findByTypeAndCode(AfwConstants.EXECUTION_MODE, AfwConstants.DEVELOPMENT_MODE))
-					
 					.built();
 		}
 		catch(Exception ex) {
 			throw new JsonFailure(new JsonException(ex));
 		}
 	}
+	
+	@RequestMapping(value="/user")
+	public Principal user(Principal user) throws JsonFailure {
+		return user;
+	}
+
 }

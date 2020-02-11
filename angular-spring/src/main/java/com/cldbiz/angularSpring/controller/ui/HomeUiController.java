@@ -1,4 +1,4 @@
-package com.cldbiz.angularSpring.controller.api;
+package com.cldbiz.angularSpring.controller.ui;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cldbiz.angularSpring.controller.BaseController;
 
 @RestController
-@RequestMapping("/rest/api/resource")
-public class ResourceApiController extends BaseController {
-	private static final Logger logger = LoggerFactory.getLogger(ResourceApiController.class);
+@RequestMapping("/rest/ui/home")
+public class HomeUiController extends BaseController {
+	private static final Logger logger = LoggerFactory.getLogger(HomeUiController.class);
 	
-	  @RequestMapping(value="/home")
+	  @RequestMapping(value="/resource")
 	  public Map<String,Object> home() {
 	    Map<String,Object> model = new HashMap<String,Object>();
 	    model.put("id", UUID.randomUUID().toString());

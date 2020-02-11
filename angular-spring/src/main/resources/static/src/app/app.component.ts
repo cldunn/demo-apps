@@ -1,19 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
 
-import { HttpParams } from '@angular/common/http';
-
-import { AppConfigService } from './app-config.service';
 import { ApiService } from "./shared/service/api.service";
+
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'Demo';
-  greeting = {'id': 'XXX', 'content': 'Hello World'};
+export class AppComponent {
 
+  constructor(private appService: AppService, private apiService: ApiService, private router: Router) {
+      this.appService.authenticate(undefined, undefined);
+  }
+  
+  logout() {
+      this.apiService.post('logout', {}).pipe(finalize(() => {
+          this.appService.authenticated = false;
+          this.router.navigateByUrl('/login');
+      })).subscribe();
+  }
+
+  /*
   constructor(
       private appConfigService: AppConfigService,
       private apiService: ApiService) {
@@ -23,28 +35,25 @@ export class AppComponent implements OnInit {
       console.log('logLevel: ', appConfigService.logLevel);
       console.log('hostUrl: ', appConfigService.hostUrl);
       
-      this.apiService.apiGet("/resource/home", new HttpParams()).subscribe((resp) => {
+      this.apiService.uiGet("/home/resource", new HttpParams()).subscribe((resp) => {
           this.greeting = resp;
       });
   }
   
   ngOnInit() {
-      /*
       const params = new HttpParams()
           .set('name', 'Cliff');
 
-      this.apiService.uiGet("/login/pageConfig").subscribe((resp) => {
+      this.apiService.uiPost("/login/pageConfig").subscribe((resp) => {
           console.log('result: ', resp);
       });
-      */
-      
+  
       const params = new HttpParams().set('firstName', 'Cliff');
       this.apiService.uiGet("/login/pageConfig", params).subscribe((resp) => {
           console.log('resp: ', resp);
       },(error) => {
           console.log('error', error);
       });
-      
-
   }
+  */  
 }

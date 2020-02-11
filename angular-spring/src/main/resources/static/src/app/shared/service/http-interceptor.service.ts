@@ -18,6 +18,7 @@ export class HttpInterceptorService implements HttpInterceptor {
   
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       const headersConfig = {
+          'X-Requested-With': 'XMLHttpRequest',
           'Content-Type': 'application/json',
           'Accept': 'application/json'
       }
