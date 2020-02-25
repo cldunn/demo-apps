@@ -14,7 +14,8 @@ export class HomeComponent {
   greeting = {id: '', content: ''};
 
   constructor(private appService: AppService, private apiService: ApiService) {
-      apiService.uiGet('home/resource').subscribe(data => this.greeting = data);
+      // apiService.uiGet('home/resource').subscribe(data => this.greeting = data);
+      apiService.get('home/resource').subscribe(data => this.greeting = data);
   }
 
   authenticated() { return this.appService.authenticated; }

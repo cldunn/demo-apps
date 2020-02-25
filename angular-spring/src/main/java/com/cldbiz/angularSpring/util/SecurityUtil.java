@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ import com.cldbiz.angularSpring.spring.bean.AfwMessageSource;
 
 import com.google.json.JsonSanitizer;
 
-import io.netty.util.internal.StringUtil;
 
 public class SecurityUtil {
 	private static final Logger logger = LoggerFactory.getLogger(AntiSamyUtil.class);
@@ -26,7 +26,7 @@ public class SecurityUtil {
 	private static AfwMessageSource messagSource;
 
 	public static String sanitize(String input) {
-		if (StringUtil.isNullOrEmpty(input)) {
+		if (StringUtils.isEmpty(input)) {
 			return  input;
 		}
 		

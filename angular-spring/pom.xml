@@ -16,6 +16,26 @@
   <name>angular-spring</name>
   <description>spring angular bootstrap material design demo</description>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>Hoxton.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+	
+  	<dependency>
+	  <groupId>org.springframework.cloud</groupId>
+	  <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+	</dependency>
+  </dependencies>
+	
   <build>
     <finalName>angularSpring</finalName>
     <resources>

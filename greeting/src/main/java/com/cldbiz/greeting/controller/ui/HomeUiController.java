@@ -1,4 +1,4 @@
-package com.cldbiz.angularSpring.controller.ui;
+package com.cldbiz.greeting.controller.ui;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,15 +6,13 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.cldbiz.angularSpring.controller.BaseController;
 
 @RestController
 @RequestMapping("/rest/ui/home")
-public class HomeUiController extends BaseController {
+public class HomeUiController  {
 	private static final Logger logger = LoggerFactory.getLogger(HomeUiController.class);
 	
 	  @RequestMapping(value="/resource")
