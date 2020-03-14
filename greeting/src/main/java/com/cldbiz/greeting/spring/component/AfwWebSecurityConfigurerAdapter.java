@@ -13,11 +13,6 @@ public class AfwWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapte
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-	  /*
-	  httpSecurity.authorizeRequests().antMatchers("/").permitAll()
-	  	.and().csrf().disable();
-	  */
-		
 	  httpSecurity.httpBasic().disable();
 	  httpSecurity.authorizeRequests().anyRequest().authenticated();
 	  httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
